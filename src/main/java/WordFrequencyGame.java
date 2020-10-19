@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 public class WordFrequencyGame {
 
@@ -33,9 +36,9 @@ public class WordFrequencyGame {
     }
 
     private String joinWordAndFrequency(List<WordInfo> wordInfoList) {
-        StringJoiner joiner = new StringJoiner("\n");
-        wordInfoList.stream().map(wordInfo -> String.format("%s %d", wordInfo.getWord(), wordInfo.getWordCount())).forEach(joiner::add);
-        return joiner.toString();
+        return wordInfoList.stream()
+                .map(wordInfo -> String.format("%s %d", wordInfo.getWord(), wordInfo.getWordCount()))
+                .collect(joining("\n"));
     }
 
     private void sortWordList(List<WordInfo> wordInfoList) {
