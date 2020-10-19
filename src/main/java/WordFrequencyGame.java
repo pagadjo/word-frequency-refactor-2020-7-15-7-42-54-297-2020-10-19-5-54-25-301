@@ -10,9 +10,7 @@ public class WordFrequencyGame {
         } else {
             try {
                 List<WordInfo> wordInfoList = calculateFrequency(inputWords);
-
-                wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-
+                sortWordList(wordInfoList);
                 return joinWordAndFrequency(wordInfoList);
             } catch (Exception e) {
                 return "Calculate Error";
@@ -38,4 +36,9 @@ public class WordFrequencyGame {
         }
         return joiner.toString();
     }
+
+    private void sortWordList(List<WordInfo> wordInfoList){
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+    }
+
 }
