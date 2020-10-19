@@ -1,13 +1,14 @@
 import java.util.*;
 
 public class WordFrequencyGame {
+
     private static final String WHITE_SPACES = "\\s+";
 
     public String getResult(String inputWords) {
 
-        if (inputWords.split(WHITE_SPACES).length == 1) {
-            return inputWords + " 1";
-        } else {
+        final String ONE_WORD_ONLY = inputWords + " 1";
+
+        if (hasManyWords(inputWords)) {
             try {
                 List<WordInfo> wordInfoList = calculateFrequency(inputWords);
                 sortWordList(wordInfoList);
@@ -15,6 +16,9 @@ public class WordFrequencyGame {
             } catch (Exception e) {
                 return "Calculate Error";
             }
+
+        } else {
+            return ONE_WORD_ONLY;
         }
     }
 
@@ -34,7 +38,11 @@ public class WordFrequencyGame {
         return joiner.toString();
     }
 
-    private void sortWordList(List<WordInfo> wordInfoList){
+    private void sortWordList(List<WordInfo> wordInfoList) {
         wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+    }
+
+    private boolean hasManyWords(String inputWords) {
+        return inputWords.split(WHITE_SPACES).length != 1;
     }
 }
