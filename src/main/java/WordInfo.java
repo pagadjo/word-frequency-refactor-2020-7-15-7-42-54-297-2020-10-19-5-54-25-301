@@ -1,20 +1,18 @@
-public class WordInfo {
-    private String value;
+class WordInfo {
+    private String word;
     private int count;
 
-    public WordInfo(String w, int i){
-        this.value =w;
-        this.count =i;
+    WordInfo(String word, int count) {
+        this.word = word;
+        this.count = count;
     }
 
-
-    public String getValue() {
-        return this.value;
+    String getWord() {
+        return this.word;
     }
 
-    public int getWordCount() {
+    int getWordCount() {
         return this.count;
     }
-
 
 }
